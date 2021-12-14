@@ -6,7 +6,7 @@
 /*   By: mkoyamba <mkoyamba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 15:30:39 by mkoyamba          #+#    #+#             */
-/*   Updated: 2021/12/06 15:39:02 by mkoyamba         ###   ########.fr       */
+/*   Updated: 2021/12/14 10:40:30 by mkoyamba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 # include <stdlib.h>
 # include <limits.h>
 
-typedef struct s_struct
-{
-	char	extra;
-}				t_struct;
+size_t	ft_strlen(char *s);
+char	*ft_strjoin(char *s1, char *s2);
+int		gnl_count(char *buf);
+int		gnl_check(char *buf);
 
 #endif
