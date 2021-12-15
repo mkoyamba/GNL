@@ -15,11 +15,15 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stddef.h>
 # include <limits.h>
 
+char	*push_extra_l(char **extra, int fd, size_t check);
+char	*get_next_line(int fd);
 size_t	ft_strlen(char *s);
 char	*ft_strjoin(char *s1, char *s2);
-int		gnl_count(char *buf);
-int		gnl_check(char *buf);
+void	*ft_memset(void *b, int c, size_t len);
+void	*ft_memmove(void *dst, const void *src, size_t len);
+size_t	gnl_check(char *buf);
 
 #endif

@@ -46,29 +46,64 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	result[n] = '\0';
 	free(s1);
-	free(s2);
 	return (result);
 }
 
-int	gnl_count(char *buf)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	size_t	n;
+	char			*result;
+	unsigned int	n;
 
 	n = 0;
-	while (buf[n] != '\n')
+	result = (char *)b;
+	while (n < len)
+	{
+		result[n] = (unsigned char)c;
 		n++;
-	return (n);
+	}
+	return (b);
 }
 
-int	gnl_check(char *buf)
+void	*ft_memmove(void *dst, const void *src, size_t len)
+{
+	char		*tdst;
+	const char	*tsrc;
+	size_t		n;
+
+	tdst = (char *)dst;
+	tsrc = (const char *)src;
+	n = 0;
+	if (len == 0)
+		return (dst);
+	if (dst > src)
+	{
+		while (len - 1 > 0)
+		{
+			tdst[len - 1] = tsrc[len - 1];
+			len--;
+		}
+		tdst[len - 1] = tsrc[len - 1];
+	}
+	else
+		while (n < len)
+		{
+			tdst[n] = tsrc[n];
+			n++;
+		}
+	return (dst);
+}
+
+size_t	gnl_check(char *buf)
 {
 	size_t	n;
 
 	n = 0;
+	if (!buf)
+		return (0);
 	while (n < ft_strlen(buf))
 	{
 		if (buf[n] == '\n')
-			return (n);
+			return (n + 1);
 	}
 	return (0);
 }
