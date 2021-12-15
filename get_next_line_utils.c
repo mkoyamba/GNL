@@ -6,7 +6,7 @@
 /*   By: mkoyamba <mkoyamba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 09:32:57 by mkoyamba          #+#    #+#             */
-/*   Updated: 2021/12/14 10:40:07 by mkoyamba         ###   ########.fr       */
+/*   Updated: 2021/12/16 00:35:51 by mkoyamba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_strlen(char *s)
 	size_t	n;
 
 	n = 0;
+	if (!s)
+		return (0);
 	while (s[n])
 		n++;
 	return (n);
@@ -31,14 +33,16 @@ char	*ft_strjoin(char *s1, char *s2)
 	n = 0;
 	a = 0;
 	result = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	while (s1[a])
+	if (!result)
+		return (NULL);
+	while (s1 && s1[a])
 	{
 		result[n] = s1[a];
 		n++;
 		a++;
 	}
 	a = 0;
-	while (s2[a])
+	while (s2 && s2[a])
 	{
 		result[n] = s2[a];
 		n++;
@@ -64,35 +68,6 @@ void	*ft_memset(void *b, int c, size_t len)
 	return (b);
 }
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
-{
-	char		*tdst;
-	const char	*tsrc;
-	size_t		n;
-
-	tdst = (char *)dst;
-	tsrc = (const char *)src;
-	n = 0;
-	if (len == 0)
-		return (dst);
-	if (dst > src)
-	{
-		while (len - 1 > 0)
-		{
-			tdst[len - 1] = tsrc[len - 1];
-			len--;
-		}
-		tdst[len - 1] = tsrc[len - 1];
-	}
-	else
-		while (n < len)
-		{
-			tdst[n] = tsrc[n];
-			n++;
-		}
-	return (dst);
-}
-
 size_t	gnl_check(char *buf)
 {
 	size_t	n;
@@ -104,6 +79,9 @@ size_t	gnl_check(char *buf)
 	{
 		if (buf[n] == '\n')
 			return (n + 1);
+		n++;
 	}
+	if (buf[0])
+		return (n + 1);
 	return (0);
 }
