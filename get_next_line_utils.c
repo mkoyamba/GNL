@@ -6,7 +6,7 @@
 /*   By: mkoyamba <mkoyamba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 09:32:57 by mkoyamba          #+#    #+#             */
-/*   Updated: 2021/12/16 00:35:51 by mkoyamba         ###   ########.fr       */
+/*   Updated: 2021/12/17 14:12:50 by mkoyamba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,24 @@ size_t	ft_strlen(char *s)
 	while (s[n])
 		n++;
 	return (n);
+}
+
+char	*ft_strdup(char *s1)
+{
+	char	*dest;
+	int		a;
+
+	dest = malloc((ft_strlen(s1) + 1) * sizeof(char));
+	if (!dest)
+		return (NULL);
+	a = 0;
+	while (s1[a] != '\0')
+	{
+		dest[a] = s1[a];
+		a++;
+	}
+	dest[a] = '\0';
+	return (dest);
 }
 
 char	*ft_strjoin(char *s1, char *s2)
@@ -48,8 +66,8 @@ char	*ft_strjoin(char *s1, char *s2)
 		n++;
 		a++;
 	}
-	result[n] = '\0';
 	free(s1);
+	result[n] = '\0';
 	return (result);
 }
 
@@ -81,7 +99,5 @@ size_t	gnl_check(char *buf)
 			return (n + 1);
 		n++;
 	}
-	if (buf[0])
-		return (n + 1);
 	return (0);
 }
