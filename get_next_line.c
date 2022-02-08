@@ -6,7 +6,7 @@
 /*   By: mkoyamba <mkoyamba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 22:07:56 by mkoyamba          #+#    #+#             */
-/*   Updated: 2022/02/08 21:01:36 by mkoyamba         ###   ########.fr       */
+/*   Updated: 2022/02/08 21:19:49 by mkoyamba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,28 +42,11 @@ char	*get_next_line(int fd)
 	static char	*str;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (0);
+		return (NULL);
 	str = ft_read_to_str(fd, str);
 	if (!str)
 		return (NULL);
 	line = ft_get_line(str);
 	str = ft_new_str(str);
 	return (line);
-}
-
-#include <fcntl.h>
-
-int main(int argc, char *argv[])
-{
-	char *line;
-	int	fd;
-
-	fd = open(argv[1], O_RDONLY);
-	line = get_next_line(fd);
-	while (line)
-	{
-		write(1, line, ft_strlen(line));
-		free(line);
-		line = get_next_line(fd);
-	}
 }
