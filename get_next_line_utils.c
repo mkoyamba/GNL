@@ -26,26 +26,26 @@ size_t	ft_strlen(char *s)
 
 char	*ft_strchr(char *s, int c)
 {
-	int	i;
+	int	x;
 
-	i = 0;
+	x = 0;
 	if (!s)
 		return (0);
 	if (c == '\0')
 		return ((char *)&s[ft_strlen(s)]);
-	while (s[i] != '\0')
+	while (s[x] != '\0')
 	{
-		if (s[i] == (char) c)
-			return ((char *)&s[i]);
-		i++;
+		if (s[x] == (char) c)
+			return ((char *)&s[x]);
+		x++;
 	}
 	return (0);
 }
 
 char	*ft_strjoin(char *str, char *buff)
 {
-	size_t	i;
-	size_t	j;
+	size_t	a;
+	size_t	b;
 	char	*line;
 
 	if (!str)
@@ -58,13 +58,13 @@ char	*ft_strjoin(char *str, char *buff)
 	line = malloc(sizeof(char) * ((ft_strlen(str) + ft_strlen(buff)) + 1));
 	if (line == NULL)
 		return (NULL);
-	i = -1;
-	j = 0;
+	a = -1;
+	b = 0;
 	if (str)
-		while (str[++i] != '\0')
-			line[i] = str[i];
-	while (buff[j] != '\0')
-		line[i++] = buff[j++];
+		while (str[++a] != '\0')
+			line[a] = str[a];
+	while (buff[b] != '\0')
+		line[a++] = buff[b++];
 	line[ft_strlen(str) + ft_strlen(buff)] = '\0';
 	free(str);
 	return (line);
@@ -72,57 +72,57 @@ char	*ft_strjoin(char *str, char *buff)
 
 char	*ft_get_line(char *str)
 {
-	int		i;
+	int		x;
 	char	*line;
 
-	i = 0;
-	if (!str[i])
+	x = 0;
+	if (!str[x])
 		return (NULL);
-	while (str[i] && str[i] != '\n')
-		i++;
-	line = (char *)malloc(sizeof(char) * (i + 2));
+	while (str[x] && str[x] != '\n')
+		x++;
+	line = (char *)malloc(sizeof(char) * (x + 2));
 	if (!line)
 		return (NULL);
-	i = 0;
-	while (str[i] && str[i] != '\n')
+	x = 0;
+	while (str[x] && str[x] != '\n')
 	{
-		line[i] = str[i];
-		i++;
+		line[x] = str[x];
+		x++;
 	}
-	if (str[i] == '\n')
+	if (str[x] == '\n')
 	{
-		line[i] = str[i];
-		i++;
+		line[x] = str[x];
+		x++;
 	}
-	line[i] = '\0';
+	line[x] = '\0';
 	return (line);
 }
 
-char	*ft_new_str(char *str)
+char	*ft_update(char *str)
 {
 	char	*line;
-	int		i;
-	int		j;
+	int		a;
+	int		b;
 
-	i = 0;
-	while (str[i] && str[i] != '\n')
-		i++;
-	if (!str[i])
+	a = 0;
+	while (str[a] && str[a] != '\n')
+		a++;
+	if (!str[a])
 	{
 		free(str);
 		return (NULL);
 	}
-	line = (char *)malloc(sizeof(char) * (ft_strlen(str) - i + 1));
+	line = (char *)malloc(sizeof(char) * (ft_strlen(str) - a + 1));
 	if (!line)
 	{
 		free(str);
 		return (NULL);
 	}
-	i++;
-	j = 0;
-	while (str[i])
-		line[j++] = str[i++];
-	line[j] = '\0';
+	a++;
+	b = 0;
+	while (str[a])
+		line[b++] = str[a++];
+	line[b] = '\0';
 	free(str);
 	return (line);
 }
